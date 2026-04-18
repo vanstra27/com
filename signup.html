@@ -812,7 +812,8 @@
                 }
 
                 // Check if email already exists
-                const users = JSON.parse(localStorage.getItem('vanstraUsers') || '[]');
+                const storedUsers = JSON.parse(localStorage.getItem('vanstraUsers') || '[]');
+                const users = Array.isArray(storedUsers) ? storedUsers : Object.values(storedUsers || {});
                 if (users.find(u => u.email === email.toLowerCase())) {
                     showError('An account with this email already exists');
                     return false;
