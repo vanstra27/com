@@ -1,8 +1,12 @@
 // Vanstra Bank v2.0 - Core Banking System with Dual Authentication
 // Separate Login Password and Transaction PIN
 
-const VanstraBank = (function() {
+(function() {
     'use strict';
+
+    if (typeof window.VanstraBank !== 'undefined') {
+        return; // Already loaded
+    }
 
     // Event system for real-time updates
     const eventListeners = {};
@@ -511,7 +515,7 @@ const VanstraBank = (function() {
 
     // ==================== PUBLIC API ====================
 
-    return {
+    window.VanstraBank = {
         // Auth
         createAccount,
         login,
@@ -547,6 +551,3 @@ const VanstraBank = (function() {
         hashString
     };
 })();
-
-// Make available globally
-window.VanstraBank = VanstraBank;
